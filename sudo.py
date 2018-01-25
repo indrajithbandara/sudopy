@@ -41,4 +41,3 @@ else:
         args,
         None,
         1)
-    exit(0)
