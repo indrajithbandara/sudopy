@@ -10,16 +10,17 @@ def say(*args, **kwargs):
     kwargs['file'] = sys.stderr
     print(*args, **kwargs)
 
-
-# Imports, or gets the win32api module; refuses to run on Unix.
+    
 if os.name != 'nt':
     say('Please install the `sudo\' package for your distribution.')
-    exit(1)
+    exit(2)
 elif not hasattr(ctypes, 'windll') or not hasattr(ctypes.windll, 'shell32'):
     say('This is not applicable to your system.')
-    exit(2)
+    exit(3)
 elif len(sys.argv) < 2:
     say('Please provide some arguments.')
+    say('USAGE: sudo <cmd to elevate>')
+    exit(1)
 else:
     shell32 = ctypes.windll.shell32
 
